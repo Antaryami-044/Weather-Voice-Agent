@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Weather Voice Agent</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>☁️ Weather Voice Agent</h1>
+
+    <div class="livekit-box">
+      <h3>1. LiveKit Connection</h3>
+      <p style="font-size: 0.8rem; color: #666; margin-bottom: 10px;">
+        (Using manual token configured in script.js)
+      </p>
+      <button id="join-btn" class="btn primary">Join LiveKit Room</button>
+      <div id="lk-status" class="status-text">Not Connected</div>
+    </div>
+
+    <div class="controls-box">
+      <h3>2. Voice Interaction</h3>
+      <div class="controls">
+        <button id="start-btn" class="btn success">🎤 Start Listening</button>
+        <button id="stop-btn" class="btn danger" disabled>⏹ Stop</button>
+      </div>
+      <div class="status" id="status">Status: Idle</div>
+    </div>
+
+    <div class="transcript-box">
+      <div class="chat-label">You said:</div>
+      <div id="last-text" class="chat-bubble user">—</div>
+      <div class="chat-label">Agent replied:</div>
+      <div id="assistant-speech" class="chat-bubble agent">—</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
