@@ -1,16 +1,9 @@
 
-// ==========================================
-// ⚙️ MANUAL CONFIGURATION
-// ==========================================
-
-// 1. PASTE YOUR TOKEN HERE (Keep the quotes "")
+// my TOKEN , update it manually
 const MANUAL_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6IndlYXRoZXItcm9vbSJ9LCJpc3MiOiJBUElMaWtwRHJmeDZON3EiLCJleHAiOjE3NjQ4Mzc0NjgsIm5iZiI6MCwic3ViIjoibWFudWFsLXVzZXIifQ.gRLUpfxNcyS7Ad06f1q2zNb9QZwLVlkZfnUUh-aUaGA";
 
-// 2. PASTE YOUR LIVEKIT URL HERE (Keep the quotes "")
-// I fixed the spelling error here (changed 'agemt' to 'agent')
+// LIVEKIT URL 
 const LIVEKIT_URL = "wss://weather-voice-agemt-6cp5lweh.livekit.cloud"; 
-
-// ==========================================
 
 // UI Elements
 const joinBtn = document.getElementById('join-btn');
@@ -27,13 +20,13 @@ const context = { lastCity: null };
 
 function setStatus(msg) { statusEl.textContent = `Status: ${msg}`; }
 
-// --- PART 1: LIVEKIT CONNECTION ---
+// LIVEKIT CONNECTION ---
 
 joinBtn.onclick = async () => {
   lkStatus.textContent = 'Connecting...';
   lkStatus.style.color = '#666'; 
 
-  // 1. Check if user forgot to update the URL or Token
+  // if user forgot to update the URL or Token
   if (LIVEKIT_URL.includes("your-project-url")) {
     alert("STOP! You forgot to paste your LiveKit URL in script.js.");
     lkStatus.textContent = 'Error: Default URL detected.';
@@ -49,21 +42,19 @@ joinBtn.onclick = async () => {
   }
 
   try {
-    // 2. Connect to LiveKit (UPDATED CODE)
-    
-    // Create a new Room instance (Fixes "connect is not a function" error)
+    // Create a new Room instance
     lkRoom = new LivekitClient.Room();
     
     // Connect to the room
     await lkRoom.connect(LIVEKIT_URL, MANUAL_TOKEN);
     
-    lkStatus.textContent = `✅ Connected to LiveKit!`;
+    lkStatus.textContent = `✅ Connected to LiveKit`;
     lkStatus.style.color = 'green';
     joinBtn.disabled = true;
     joinBtn.textContent = "Connected Active";
     joinBtn.style.backgroundColor = "#28a745"; 
 
-    // Publish Microphone (UPDATED CODE)
+    // Publish Microphone
     await lkRoom.localParticipant.setMicrophoneEnabled(true);
     console.log("Microphone published.");
 
@@ -74,7 +65,7 @@ joinBtn.onclick = async () => {
   }
 };
 
-// --- PART 2: VOICE AGENT LOGIC (Global Weather) ---
+// VOICE AGENT LOGIC (Global Weather)
 
 function speak(text) {
   assistantEl.textContent = text;
