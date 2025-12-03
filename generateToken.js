@@ -11,10 +11,10 @@ const createToken = async () => {
   const roomName = 'weather-room';
   const participantName = 'manual-user';
 
-  // 1. Create the token
+  // Create the token
   const at = new AccessToken(process.env.LIVEKIT_API_KEY, process.env.LIVEKIT_API_SECRET, {
     identity: participantName,
-    ttl: 24 * 60 * 60, // Token valid for 24 hours (enough for your assignment)
+    ttl: 24 * 60 * 60, // Token valid for 24 hours 
   });
 
   at.addGrant({ roomJoin: true, room: roomName });
