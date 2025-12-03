@@ -1,63 +1,3 @@
-/* body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6f8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-  }
-  
-  .container {
-    background: white;
-    width: 100%;
-    max-width: 500px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-  
-  h1 { text-align: center; color: #333; font-size: 1.5rem; margin-bottom: 20px; }
-  h3 { font-size: 1rem; color: #555; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-  
-  .livekit-box, .controls-box, .transcript-box {
-    margin-bottom: 20px;
-    padding: 15px;
-    background: #f9f9f9;
-    border-radius: 8px;
-    border: 1px solid #eee;
-  }
-  
-  .input-group { display: flex; gap: 10px; margin-bottom: 10px; }
-  label { font-size: 0.9rem; flex: 1; }
-  input { width: 100%; padding: 5px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; }
-  
-  .btn { width: 100%; padding: 10px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; transition: 0.2s; }
-  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-  .primary { background: #007bff; color: white; }
-  .success { background: #28a745; color: white; }
-  .danger { background: #dc3545; color: white; }
-  
-  .status-text { font-size: 0.85rem; color: #666; margin-top: 5px; text-align: center; }
-  .status { font-weight: bold; text-align: center; color: #007bff; margin-top: 10px; }
-  
-  .chat-bubble { padding: 10px; border-radius: 6px; font-size: 0.95rem; margin-bottom: 10px; }
-  .user { background: #e3f2fd; color: #0d47a1; border-left: 4px solid #007bff; }
-  .agent { background: #e8f5e9; color: #1b5e20; border-left: 4px solid #28a745; }
-  .notes { font-size: 0.8rem; color: #888; text-align: center; } */
-
-
-
-
-
-
-
-
-
-
-
-
-  /* Import a modern font */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 body {
@@ -72,19 +12,17 @@ body {
   color: #333;
 }
 
-/* --- Main Container with Grid Layout --- */
+/* Main Container with Grid */
 .container {
   background: white;
   width: 100%;
-  max-width: 900px; /* Wider for desktop */
+  max-width: 900px;   /*for desktop*/
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  
-  /* Grid Setup */
   display: grid;
   gap: 20px;
-  /* Default Mobile Layout (Single Column) */
+  /* Mobile Layout (Single Column) */
   grid-template-columns: 1fr;
   grid-template-areas: 
     "header"
@@ -93,7 +31,7 @@ body {
     "transcript";
 }
 
-/* --- Desktop Responsive Layout (Two Columns) --- */
+/* Responsive Layout */
 @media (min-width: 768px) {
   .container {
     grid-template-columns: 1fr 1.3fr; /* Right side slightly wider */
@@ -105,13 +43,12 @@ body {
   }
 }
 
-/* Assigning Areas */
 h1 { grid-area: header; }
 .livekit-box { grid-area: livekit; }
 .controls-box { grid-area: controls; }
 .transcript-box { grid-area: transcript; }
 
-/* --- Styling Components --- */
+/* Styling Components */
 
 h1 {
   text-align: center;
@@ -133,7 +70,7 @@ h3 {
   padding-bottom: 8px;
 }
 
-/* Boxes (Cards) */
+/* Boxes */
 .livekit-box, .controls-box, .transcript-box {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
@@ -144,14 +81,13 @@ h3 {
   box-sizing: border-box;
 }
 
-/* Slight hover lift for desktop feel */
 .livekit-box:hover, .controls-box:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border-color: #cbd5e1;
 }
 
-/* --- Buttons --- */
+/* Buttons */
 .btn {
   width: 100%;
   padding: 12px;
@@ -187,7 +123,7 @@ h3 {
 }
 .danger:hover:not(:disabled) { background: #dc2626; }
 
-/* --- Status Indicators --- */
+/* Status  */
 .status-text { 
   font-size: 0.85rem; 
   color: #64748b; 
@@ -206,7 +142,7 @@ h3 {
   border-radius: 6px;
 }
 
-/* --- Chat Bubbles --- */
+/* Chat Bubbles */
 .chat-label {
   font-size: 0.75rem;
   color: #94a3b8;
@@ -238,7 +174,7 @@ h3 {
   border-left: 4px solid #10b981;
 }
 
-/* Responsive adjustment for controls buttons */
+/* adjustment for controls buttons */
 .controls {
   display: flex;
   gap: 10px;
