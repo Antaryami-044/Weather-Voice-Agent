@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -35,6 +35,66 @@
       <div class="chat-label">Agent replied:</div>
       <div id="assistant-speech" class="chat-bubble agent">—</div>
     </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AI Weather Assistant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <link rel="stylesheet" href="styles.css" />
+  
+  <script src="https://cdn.jsdelivr.net/npm/livekit-client/dist/livekit-client.umd.min.js"></script>
+</head>
+<body>
+  <div class="container">
+
+    <h1>🌤️ Weather Assistant</h1>
+
+    <div class="livekit-box">
+      <h3>1. System Connection</h3>
+      <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 12px; line-height: 1.5;">
+        Connect to the LiveKit server to enable real-time voice processing capabilities.
+      </p>
+      
+      <button id="join-btn" class="btn primary">Initialize Connection</button>
+      
+      <div id="lk-status" class="status-text">System is currently offline</div>
+    </div>
+
+    <div class="controls-box">
+      <h3>2. Voice Controls</h3>
+      <div class="controls">
+        <button id="start-btn" class="btn success">🎤 Tap to Speak</button>
+        
+        <button id="stop-btn" class="btn danger" disabled>⏹ Stop Listening</button>
+      </div>
+      
+      <div class="status" id="status">Ready to start</div>
+    </div>
+
+    <div class="transcript-box">
+      <div class="chat-label">Your Query:</div>
+      <div id="last-text" class="chat-bubble user">...</div>
+
+      <div class="chat-label">AI Response:</div>
+      <div id="assistant-speech" class="chat-bubble agent">
+        Hello! Connect the system and ask me about the weather in any city.
+      </div>
+    </div>
+
   </div>
 
   <script src="script.js"></script>

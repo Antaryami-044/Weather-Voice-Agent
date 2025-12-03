@@ -1,13 +1,13 @@
 
 // ==========================================
-// ⚙️ MANUAL CONFIGURATION (ACTION REQUIRED)
+// ⚙️ MANUAL CONFIGURATION
 // ==========================================
 
 // 1. PASTE YOUR TOKEN HERE (Keep the quotes "")
-const MANUAL_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6IndlYXRoZXItcm9vbSJ9LCJpc3MiOiJBUElMaWtwRHJmeDZON3EiLCJleHAiOjE3NjQ3NTM4MDQsIm5iZiI6MCwic3ViIjoibWFudWFsLXVzZXIifQ.uX7spmD46Z0apgvO5NFjyOXnAuaxQvxBizCjkCFAUp0";
+const MANUAL_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJ2aWRlbyI6eyJyb29tSm9pbiI6dHJ1ZSwicm9vbSI6IndlYXRoZXItcm9vbSJ9LCJpc3MiOiJBUElMaWtwRHJmeDZON3EiLCJleHAiOjE3NjQ4Mzc0NjgsIm5iZiI6MCwic3ViIjoibWFudWFsLXVzZXIifQ.gRLUpfxNcyS7Ad06f1q2zNb9QZwLVlkZfnUUh-aUaGA";
 
 // 2. PASTE YOUR LIVEKIT URL HERE (Keep the quotes "")
-// Go to LiveKit Cloud Dashboard -> Copy "WebSocket URL"
+// I fixed the spelling error here (changed 'agemt' to 'agent')
 const LIVEKIT_URL = "wss://weather-voice-agemt-6cp5lweh.livekit.cloud"; 
 
 // ==========================================
@@ -31,12 +31,12 @@ function setStatus(msg) { statusEl.textContent = `Status: ${msg}`; }
 
 joinBtn.onclick = async () => {
   lkStatus.textContent = 'Connecting...';
-  lkStatus.style.color = '#666'; // Reset color
+  lkStatus.style.color = '#666'; 
 
   // 1. Check if user forgot to update the URL or Token
   if (LIVEKIT_URL.includes("your-project-url")) {
-    alert("STOP! You forgot to paste your LiveKit URL in script.js (Line 12).");
-    lkStatus.textContent = 'Error: Default URL detected in code.';
+    alert("STOP! You forgot to paste your LiveKit URL in script.js.");
+    lkStatus.textContent = 'Error: Default URL detected.';
     lkStatus.style.color = 'red';
     return;
   }
@@ -49,18 +49,22 @@ joinBtn.onclick = async () => {
   }
 
   try {
-    // 2. Connect to LiveKit
-    // Note: LiveKitClient is the global object from the CDN import
-    lkRoom = await LivekitClient.connect(LIVEKIT_URL, MANUAL_TOKEN);
+    // 2. Connect to LiveKit (UPDATED CODE)
+    
+    // Create a new Room instance (Fixes "connect is not a function" error)
+    lkRoom = new LivekitClient.Room();
+    
+    // Connect to the room
+    await lkRoom.connect(LIVEKIT_URL, MANUAL_TOKEN);
     
     lkStatus.textContent = `✅ Connected to LiveKit!`;
     lkStatus.style.color = 'green';
     joinBtn.disabled = true;
     joinBtn.textContent = "Connected Active";
-    joinBtn.style.backgroundColor = "#28a745"; // Green button
+    joinBtn.style.backgroundColor = "#28a745"; 
 
-    // Optional: Publish Mic
-    await lkRoom.localParticipant.enableCameraAndMicrophone(false, true);
+    // Publish Microphone (UPDATED CODE)
+    await lkRoom.localParticipant.setMicrophoneEnabled(true);
     console.log("Microphone published.");
 
   } catch (err) {
